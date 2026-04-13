@@ -1,17 +1,23 @@
 <h1>My first Angular app</h1>
-<form>
+<form (ngSubmit)="login()">
 <div class="LoginContainer">
 <div>
 <input type="text" placeholder="username"
-name="username" required>
+[(ngModel)]="username" name="username"
+required>
 </div>
 <br>
 <div>
 <input type="text" placeholder="password"
-name="password" required>
+[(ngModel)]="password" name="password"
+required>
 </div>
 <button type="submit">Login</button>
+<p>{{errmessage}}</p>
 </div>
 </form>
 <router-outlet />
+Update form to handle form
+input and for checking values
+(.html)
 
