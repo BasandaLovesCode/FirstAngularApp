@@ -1,23 +1,63 @@
-<h1>My first Angular app</h1>
-<form (ngSubmit)="login()">
-<div class="LoginContainer">
-<div>
-<input type="text" placeholder="username"
-[(ngModel)]="username" name="username"
-required>
-</div>
-<br>
-<div>
-<input type="text" placeholder="password"
-[(ngModel)]="password" name="password"
-required>
-</div>
-<button type="submit">Login</button>
-<p>{{errmessage}}</p>
-</div>
-</form>
-<router-outlet />
-Update form to handle form
-input and for checking values
-(.html)
+<div class="page">
 
+  <h1>INF354 — Angular Forms Comparison</h1>
+  <p class="hint">Login credentials for both forms: <strong>inf354 / abcde</strong></p>
+
+  <!-- Both forms sit side by side -->
+  <div class="forms-row">
+    <app-template-login></app-template-login>
+    <app-reactive-login></app-reactive-login>
+  </div>
+
+  <!-- Summary comparison table -->
+  <div class="comparison-table">
+    <h2>Key Differences</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>FormsModule (Template-Driven)</th>
+          <th>ReactiveFormsModule (Reactive)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Where form is defined</td>
+          <td>In the HTML template</td>
+          <td>In the TypeScript class</td>
+        </tr>
+        <tr>
+          <td>Key directive / class</td>
+          <td><code>[(ngModel)]</code></td>
+          <td><code>FormGroup</code> + <code>FormControl</code></td>
+        </tr>
+        <tr>
+          <td>Module to import</td>
+          <td><code>FormsModule</code></td>
+          <td><code>ReactiveFormsModule</code></td>
+        </tr>
+        <tr>
+          <td>Data flow</td>
+          <td>Two-way binding (HTML ↔ TS)</td>
+          <td>One source of truth (TS model)</td>
+        </tr>
+        <tr>
+          <td>Validators</td>
+          <td>HTML attributes (<code>required</code>, etc.)</td>
+          <td>TypeScript array: <code>Validators.required</code></td>
+        </tr>
+        <tr>
+          <td>Unit testing</td>
+          <td>Harder (needs DOM)</td>
+          <td>Easy (pure TypeScript objects)</td>
+        </tr>
+        <tr>
+          <td>Best for</td>
+          <td>Simple forms, quick prototypes</td>
+          <td>Complex forms, large apps</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

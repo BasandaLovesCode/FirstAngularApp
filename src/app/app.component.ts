@@ -1,30 +1,21 @@
+// ============================================================
+// ROOT COMPONENT
+// This component's only job now is to display both login forms
+// side by side so you can compare them.
+// ============================================================
+
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { TemplateLoginComponent } from './template-login/template-login.component';
+import { ReactiveLoginComponent } from './reactive-login/reactive-login.component';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,FormsModule],
+  imports: [TemplateLoginComponent,  // the FormsModule / template-driven form 
+  ReactiveLoginComponent   // the ReactiveFormsModule / reactive form
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  //variables inside a class a class variables therefore we
-//dont use let keyword to declare
-username:string = '';
-password:string='';
-errmessage:string='';
-//hardcode the values for now
-//if we dont want these to be modified from outside
-//component we can declare them as private and readonly
-realusername:string='inf354';
-realpassword:string='abcde';
-//logic of program , in login function/method
-login()
-{
-if(this.username ==this.realusername &&
-this.password==this.realpassword)
-this.errmessage = "Login successful";
-else
-this.errmessage="Login unsuccesful";
-}
+  // Nothing needed here — each form component handles its own logic.
 }

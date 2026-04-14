@@ -1,0 +1,73 @@
+<!-- ============================================================
+  TEMPLATE-DRIVEN FORM — FormsModule
+  ============================================================
+  Notice: ALL the form logic is described here in the HTML.
+
+  Key directives explained:
+    (ngSubmit)="login()"   — calls login() when form is submitted
+    [(ngModel)]="username" — TWO-WAY binding: when the user types,
+                             this.username updates instantly.
+                             When this.username changes in TS,
+                             the input field updates instantly.
+    name="username"        — required by Angular when using ngModel
+    #usernameInput="ngModel" — gives us a reference to the ngModel
+                               so we can check validation state
+    required               — built-in HTML5 validator; ngModel
+                             picks this up automatically
+  ============================================================ -->
+
+<div class="form-card">
+  <h2>Template-Driven Login</h2>
+  <p class="subtitle">(FormsModule / ngModel)</p>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+
+    <div class="field">
+      <label for="td-username">Username</label>
+      <input
+        id="td-username"
+        type="text"
+        placeholder="Enter username"
+        [(ngModel)]="username"
+        name="username"
+        required
+        #usernameInput="ngModel"
+      />
+      <!-- Show validation error only after the user has touched the field -->
+      <span class="error" *ngIf="usernameInput.invalid && usernameInput.touched">
+        Username is required
+      </span>
+    </div>
+
+    <div class="field">
+      <label for="td-password">Password</label>
+      <input
+        id="td-password"
+        type="password"
+        placeholder="Enter password"
+        [(ngModel)]="password"
+        name="password"
+        required
+        #passwordInput="ngModel"
+      />
+      <span class="error" *ngIf="passwordInput.invalid && passwordInput.touched">
+        Password is required
+      </span>
+    </div>
+
+    <!-- loginForm.invalid comes from the #loginForm="ngForm" reference above -->
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+    <p class="message" [class.success]="message.includes('successful')">
+      {{ message }}
+    </p>
+
+  </form>
+
+  <div class="debug-box">
+    <strong>Live values (two-way binding in action):</strong><br/>
+    username = "{{ username }}"<br/>
+    password = "{{ password }}"<br/>
+    form valid = {{ loginForm.valid }}
+  </div>
+</div>

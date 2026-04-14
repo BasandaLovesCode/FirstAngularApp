@@ -1,1 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* ---- Shared form card (used by both login components) ---- */
+/* Global styles are needed because Angular's View Encapsulation
+   stops parent CSS from reaching child component elements. */
+
+.form-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 28px 32px;
+  width: 320px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.form-card h2 {
+  margin: 0 0 4px;
+  color: #222;
+  font-size: 1.2rem;
+}
+
+.form-card .subtitle {
+  color: #888;
+  font-size: 0.85rem;
+  margin: 0 0 20px;
+}
+
+.form-card .field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.form-card label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #444;
+}
+
+.form-card input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.form-card input:focus {
+  outline: none;
+  border-color: #5c7fff;
+}
+
+.form-card button {
+  width: 100%;
+  padding: 10px;
+  background-color: #5c7fff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.form-card button:disabled {
+  background-color: #aab4d8;
+  cursor: not-allowed;
+}
+
+.form-card .error {
+  color: #e53935;
+  font-size: 0.78rem;
+  margin-top: 3px;
+}
+
+.form-card .message {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #e53935;
+  min-height: 1.2em;
+}
+
+.form-card .message.success {
+  color: #2e7d32;
+}
+
+/* Debug box — shows live form values */
+.form-card .debug-box {
+  margin-top: 20px;
+  background: #f7f7f7;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.7;
+}

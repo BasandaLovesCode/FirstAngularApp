@@ -1,0 +1,67 @@
+<!-- ============================================================
+  REACTIVE FORM — ReactiveFormsModule
+  ============================================================
+  Notice: there is NO [(ngModel)] here at all.
+  Instead we use:
+    [formGroup]="loginForm"     — links this <form> to the FormGroup
+                                  we built in TypeScript
+    formControlName="username"  — links this <input> to the
+                                  FormControl named "username"
+                                  inside loginForm
+
+  The TypeScript class "owns" the form state.
+  This HTML just reflects it.
+  ============================================================ -->
+
+<div class="form-card">
+  <h2>Reactive Login</h2>
+  <p class="subtitle">(ReactiveFormsModule / FormGroup)</p>
+
+  <!-- [formGroup] connects this element to our TS FormGroup -->
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <div class="field">
+      <label for="r-username">Username</label>
+      <input
+        id="r-username"
+        type="text"
+        placeholder="Enter username"
+        formControlName="username"
+      />
+      <!-- username.invalid comes from the getter in the TS class -->
+      <span class="error" *ngIf="username.invalid && username.touched">
+        Username is required
+      </span>
+    </div>
+
+    <div class="field">
+      <label for="r-password">Password</label>
+      <input
+        id="r-password"
+        type="password"
+        placeholder="Enter password"
+        formControlName="password"
+      />
+      <span class="error" *ngIf="password.invalid && password.touched">
+        <span *ngIf="password.errors?.['required']">Password is required</span>
+        <span *ngIf="password.errors?.['minlength']">Minimum 3 characters</span>
+      </span>
+    </div>
+
+    <!-- loginForm.invalid comes straight from our FormGroup in TS -->
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+    <p class="message" [class.success]="message.includes('successful')">
+      {{ message }}
+    </p>
+
+  </form>
+
+  <div class="debug-box">
+    <strong>Live values (FormGroup state):</strong><br/>
+    username = "{{ loginForm.value.username }}"<br/>
+    password = "{{ loginForm.value.password }}"<br/>
+    form valid = {{ loginForm.valid }}<br/>
+    username errors = {{ username.errors | json }}
+  </div>
+</div>
